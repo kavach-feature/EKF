@@ -1,12 +1,12 @@
 #ifndef FusionEKF_H_
 #define FusionEKF_H_
 
-#include <fstream>
-#include <string>
-#include <vector>
-#include "Eigen/Dense"
-#include "kalman_filter.h"
 #include "measurement_package.h"
+#include "Eigen/Dense"
+#include <vector>
+#include <string>
+#include <fstream>
+#include "kalman_filter.h"
 #include "tools.h"
 
 class FusionEKF {
@@ -39,11 +39,13 @@ class FusionEKF {
   long long previous_timestamp_;
 
   // tool object used to compute Jacobian and RMSE
-  Tools tools;
   Eigen::MatrixXd R_laser_;
   Eigen::MatrixXd R_radar_;
   Eigen::MatrixXd H_laser_;
   Eigen::MatrixXd Hj_;
+  Eigen::VectorXd h(Eigen::VectorXd &x); // Converts 4x1 cartesian into 3x1 radial
+  float noise_ax, noise_ay;
+
 };
 
 #endif // FusionEKF_H_

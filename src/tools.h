@@ -25,7 +25,12 @@ class Tools {
   /**
    * A helper method to calculate Jacobians.
    */
-  Eigen::MatrixXd CalculateJacobian(const Eigen::VectorXd& x_state);
+  static Eigen::MatrixXd CalculateJacobian(const Eigen::VectorXd& x_state);
+
+  static Eigen::MatrixXd compute_covariance_mat(float dt, float noise_ax, float noise_ay);
+  static Eigen::MatrixXd compute_transition_mat(float time_difference);
+  static Eigen::VectorXd convert_radial_to_cartesian(const Eigen::VectorXd &z);
+  static Eigen::VectorXd convert_cartesian_to_radial(const Eigen::VectorXd &x);
 
 };
 
